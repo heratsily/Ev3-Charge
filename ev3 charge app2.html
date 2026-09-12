@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>EV3 Charge</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="EV3 Charge">
+<meta name="theme-color" content="#14181A">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAADnElEQVR4nO3d0W0bMRRE0VGQEvThuB53kfrSRfpJG/mwYdiyHpfk0qt9b+6pgBAuZkUsIF2uT88C7vnx6APgvIgDIeJAiDgQIg6EiAMh4kCIOBAiDoSIAyHiQIg4ECIOhIgDIeJAiDgQIg6EiAMh4kCIOAb8+vvn0Uc4FHH0citDxIEG4uhiOBsiDjQQxzbP2RBxDPn38vvRRzgUcWywnQ0RBxqIo8V5NkQcDeZliDjQQBz3MRsiDjQQxx3MxiviQIg4bjEb74jjE8r4iDh6ub1YEXF8xGzcIA6EiOMNs/EVcSBEHBKzESAOhIiD2Qi5x0EZDe5xoME6DmajzToOtPnGMTQbhi9W5BwHNpnGwbeNHo5xUEYnxzjQyS4OZqOfXRzo5xUHszHEKw4MMYqD2RhlFAdGucTBbEywiGNnGZ4vVmQSB+bUj4MHyrT6cWBa8TiYjT2Kx4E9KsfBbOxUNg7K2K9sHNivZhzMxhI148ASBeNgNlYpGMdati9WVC8OZmOhanFgoVJxMBtr1YmDMparEweWu1yfnh99hgUKzMYJr0UsxymcsAzViKPAbJxThTiyO+dsqEAc2WfjtGUoexzZyzi53HFkd+bZUOo4ss/GyctQ6jhSO38ZyhtH9tlIIWscqaWYDSWNI/VsZClDSePAMfLFwWwcJlkclHGkZHHgSJniYDYOlimOvDKWoURxpJ6NpNLEkVfS2VCWOPLORt4yJP189AG6fN9HnDe7A+RYjqRSz4aI4/tkL0PmcXzfM6VAGTKPA23EsV6N2RBxLFemDBEHGohjpUqzIec4ll9VipUh5ziwiTjWqDcbIo4lSpYh4kADcexVdTZkG8eqq0rhMmQbB3oQx7zasyHimFa+DBHHHIcyRBxocIyDv7bv5BjHHj5liDjQQBwDrGZDxNHPrQwRBxrs4pi7qhjOhgzjmOBZhogDDcSxwXY2RBxtzmWIONDgFcfQVcV8NuQWRz/KEHHcRRmviAMh4rjFbLwjjk8o4yOjOPhVyVFGcWxiNm4QxxvK+Io4ECIOidkIEAdlhFzi4KoywSWOCLPRYB0HZbRZx4E23ziYjU2mcVBGD4s4bq4qlNHJIg7MsYuD2ejnFQdlDPGKA0OM4mA2RtWP4/WqQhkT6seBaRZxMBtzLten50efASdlsRyYQxwIEQdCxIEQcSBEHAgRB0LEgRBxIEQcCBEHQsSBEHEgRBwIEQdCxIEQcSBEHAj9B3t+tNhQ+HrMAAAAAElFTkSuQmCC">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAADnElEQVR4nO3d0W0bMRRE0VGQEvThuB53kfrSRfpJG/mwYdiyHpfk0qt9b+6pgBAuZkUsIF2uT88C7vnx6APgvIgDIeJAiDgQIg6EiAMh4kCIOBAiDoSIAyHiQIg4ECIOhIgDIeJAiDgQIg6EiAMh4kCIOAb8+vvn0Uc4FHH0citDxIEG4uhiOBsiDjQQxzbP2RBxDPn38vvRRzgUcWywnQ0RBxqIo8V5NkQcDeZliDjQQBz3MRsiDjQQxx3MxiviQIg4bjEb74jjE8r4iDh6ub1YEXF8xGzcIA6EiOMNs/EVcSBEHBKzESAOhIiD2Qi5x0EZDe5xoME6DmajzToOtPnGMTQbhi9W5BwHNpnGwbeNHo5xUEYnxzjQyS4OZqOfXRzo5xUHszHEKw4MMYqD2RhlFAdGucTBbEywiGNnGZ4vVmQSB+bUj4MHyrT6cWBa8TiYjT2Kx4E9KsfBbOxUNg7K2K9sHNivZhzMxhI148ASBeNgNlYpGMdati9WVC8OZmOhanFgoVJxMBtr1YmDMparEweWu1yfnh99hgUKzMYJr0UsxymcsAzViKPAbJxThTiyO+dsqEAc2WfjtGUoexzZyzi53HFkd+bZUOo4ss/GyctQ6jhSO38ZyhtH9tlIIWscqaWYDSWNI/VsZClDSePAMfLFwWwcJlkclHGkZHHgSJniYDYOlimOvDKWoURxpJ6NpNLEkVfS2VCWOPLORt4yJP189AG6fN9HnDe7A+RYjqRSz4aI4/tkL0PmcXzfM6VAGTKPA23EsV6N2RBxLFemDBEHGohjpUqzIec4ll9VipUh5ziwiTjWqDcbIo4lSpYh4kADcexVdTZkG8eqq0rhMmQbB3oQx7zasyHimFa+DBHHHIcyRBxocIyDv7bv5BjHHj5liDjQQBwDrGZDxNHPrQwRBxrs4pi7qhjOhgzjmOBZhogDDcSxwXY2RBxtzmWIONDgFcfQVcV8NuQWRz/KEHHcRRmviAMh4rjFbLwjjk8o4yOjOPhVyVFGcWxiNm4QxxvK+Io4ECIOidkIEAdlhFzi4KoywSWOCLPRYB0HZbRZx4E23ziYjU2mcVBGD4s4bq4qlNHJIg7MsYuD2ejnFQdlDPGKA0OM4mA2RtWP4/WqQhkT6seBaRZxMBtzLten50efASdlsRyYQxwIEQdCxIEQcSBEHAgRB0LEgRBxIEQcCBEHQsSBEHEgRBwIEQdCxIEQcSBEHAj9B3t+tNhQ+HrMAAAAAElFTkSuQmCC">
+<style>
+  :root{
+    --bg:#14181A;
+    --card:#1E2426;
+    --accent:#2DD4BF;
+    --text:#F2F4F3;
+    --muted:#8B9695;
+    --border:#2C3436;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{
+    margin:0;padding:0;height:100%;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;
+    overscroll-behavior:none;
+  }
+  body{
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+    padding:env(safe-area-inset-top) 20px env(safe-area-inset-bottom);
+  }
+  header{
+    padding:28px 4px 8px;
+  }
+  .eyebrow{
+    font-size:13px;
+    color:var(--muted);
+    letter-spacing:0.02em;
+  }
+  h1{
+    font-size:22px;
+    font-weight:500;
+    margin:2px 0 0;
+  }
+  .display{
+    margin:20px 0 24px;
+    background:var(--card);
+    border:0.5px solid var(--border);
+    border-radius:20px;
+    padding:28px 22px;
+    text-align:center;
+  }
+  .display .label{
+    font-size:13px;
+    color:var(--muted);
+    margin:0 0 6px;
+  }
+  .display .time{
+    font-family:"SF Mono",ui-monospace,Menlo,monospace;
+    font-size:52px;
+    font-weight:500;
+    letter-spacing:-0.02em;
+    color:var(--accent);
+    line-height:1;
+  }
+  .display .energy{
+    font-size:14px;
+    color:var(--muted);
+    margin-top:10px;
+  }
+  .display .ready{
+    font-size:15px;
+    color:var(--text);
+    margin-top:14px;
+    padding-top:14px;
+    border-top:0.5px solid var(--border);
+  }
+  .display .ready b{
+    color:var(--accent);
+    font-weight:600;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .field{
+    background:var(--card);
+    border:0.5px solid var(--border);
+    border-radius:14px;
+    padding:12px 14px;
+  }
+  .field label{
+    display:block;
+    font-size:12px;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .field input[type=number]{
+    width:100%;
+    background:transparent;
+    border:none;
+    color:var(--text);
+    font-size:20px;
+    font-weight:500;
+    padding:0;
+    -webkit-appearance:none;
+  }
+  .field input[type=number]:focus{outline:none;}
+  .full{grid-column:1 / -1;}
+  .slider-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+  }
+  .slider-row span{font-size:20px;font-weight:500;}
+  input[type=range]{
+    -webkit-appearance:none;
+    width:100%;
+    height:4px;
+    border-radius:2px;
+    background:var(--border);
+    margin-top:12px;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width:22px;height:22px;
+    border-radius:50%;
+    background:var(--accent);
+    border:none;
+  }
+  .presets{
+    display:flex;
+    gap:8px;
+    margin-top:16px;
+  }
+  .presets button{
+    flex:1;
+    background:var(--card);
+    border:0.5px solid var(--border);
+    color:var(--text);
+    font-size:13px;
+    padding:10px 0;
+    border-radius:12px;
+    font-family:inherit;
+    line-height:1.4;
+  }
+  .presets button .sub{
+    display:block;
+    font-size:11px;
+    opacity:0.7;
+    font-weight:400;
+  }
+  .presets button:active{background:var(--border);}
+  .presets button.active{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#0B1010;
+    font-weight:600;
+  }
+  .group-label{
+    font-size:13px;
+    color:var(--text);
+    font-weight:500;
+    margin:20px 4px 8px;
+  }
+  footer{
+    margin-top:auto;
+    padding:20px 4px 8px;
+    font-size:12px;
+    color:var(--muted);
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">Kia EV3 Prestige · Standard Range</p>
+  <h1>AC charge time</h1>
+</header>
+
+<div class="display">
+  <p class="label">Time to target</p>
+  <p class="time" id="timeOut">-</p>
+  <p class="energy" id="energyOut">-</p>
+  <p class="ready" id="readyOut">-</p>
+</div>
+
+<div class="grid">
+  <div class="field">
+    <label>Current %</label>
+    <input type="number" id="cur" value="20" min="0" max="100" inputmode="numeric">
+  </div>
+  <div class="field">
+    <label>Target %</label>
+    <input type="number" id="tgt" value="100" min="0" max="100" inputmode="numeric">
+  </div>
+  <div class="field">
+    <label>Battery (kWh net)</label>
+    <input type="number" id="cap" value="55" min="1" step="0.1" inputmode="decimal">
+  </div>
+  <div class="field">
+    <label>AC charger (kW)</label>
+    <input type="number" id="pwr" value="10.4" min="0.1" step="0.1" inputmode="decimal">
+  </div>
+  <div class="field full">
+    <div class="slider-row">
+      <label style="margin:0;">Efficiency</label>
+      <span id="effOut">90%</span>
+    </div>
+    <input type="range" id="eff" min="80" max="100" value="90" step="1">
+  </div>
+</div>
+
+<p class="group-label">Target charge</p>
+<div class="presets">
+  <button data-tgt="80">To 80%</button>
+  <button data-tgt="90">To 90%</button>
+  <button data-tgt="100">To 100%</button>
+</div>
+
+<p class="group-label">AC charging power setting</p>
+<div class="presets" id="pwrPresets">
+  <button data-pwr="6.4">60%</button>
+  <button data-pwr="9.5">90%</button>
+  <button data-pwr="10.4">100%</button>
+</div>
+
+<footer>Add to Home Screen for one-tap access</footer>
+
+<script>
+function calc(){
+  var cur=parseFloat(document.getElementById('cur').value)||0;
+  var tgt=parseFloat(document.getElementById('tgt').value)||0;
+  var cap=parseFloat(document.getElementById('cap').value)||0;
+  var pwr=parseFloat(document.getElementById('pwr').value)||0;
+  var eff=parseFloat(document.getElementById('eff').value)||90;
+  document.getElementById('effOut').textContent=eff+'%';
+
+  var delta=Math.max(0,tgt-cur);
+  var energyNeeded=cap*delta/100;
+  var wallEnergy=energyNeeded/(eff/100);
+  var hours = pwr>0 ? wallEnergy/pwr : 0;
+  var h=Math.floor(hours);
+  var m=Math.round((hours-h)*60);
+  if(m===60){h+=1;m=0;}
+
+  document.getElementById('timeOut').textContent = (delta<=0) ? '0h 00m' : (h+'h '+String(m).padStart(2,'0')+'m');
+  document.getElementById('energyOut').textContent = energyNeeded.toFixed(1)+' kWh added';
+
+  var readyEl = document.getElementById('readyOut');
+  if(delta<=0){
+    readyEl.innerHTML = 'Already at target';
+  } else {
+    var now = new Date();
+    var ready = new Date(now.getTime() + hours*3600000);
+    var hh = String(ready.getHours()).padStart(2,'0');
+    var mm = String(ready.getMinutes()).padStart(2,'0');
+    var dayNote = ready.getDate() !== now.getDate() ? ' (next day)' : '';
+    readyEl.innerHTML = 'Ready at <b>'+hh+':'+mm+'</b>'+dayNote;
+  }
+}
+
+['cur','tgt','cap','pwr','eff'].forEach(function(id){
+  document.getElementById(id).addEventListener('input', calc);
+});
+
+document.querySelectorAll('.presets button[data-tgt]').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.getElementById('tgt').value = btn.dataset.tgt;
+    calc();
+  });
+});
+
+function syncPwrButtons(){
+  var pwr = document.getElementById('pwr').value;
+  document.querySelectorAll('#pwrPresets button').forEach(function(btn){
+    btn.classList.toggle('active', btn.dataset.pwr === pwr);
+  });
+}
+
+document.querySelectorAll('#pwrPresets button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.getElementById('pwr').value = btn.dataset.pwr;
+    syncPwrButtons();
+    calc();
+  });
+});
+
+document.getElementById('pwr').addEventListener('input', syncPwrButtons);
+
+syncPwrButtons();
+calc();
+setInterval(calc, 60000);
+</script>
+
+</body>
+</html>
